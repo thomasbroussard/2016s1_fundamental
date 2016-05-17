@@ -9,6 +9,7 @@ import fr.tbr.bankaccount.datamodel.SavingsAccount;
 public class Application {
 
 	/**
+	 * modification from git
 	 * Java documentation
 	 * (javadoc) which is really helpful, especially if you don't want to spend
 	 * too much time on technical documentation
