@@ -1,9 +1,10 @@
 /**
  * 
  */
-package fr.tbr.geometry.launcher;
+package fr.tbr.geometry.test.launcher;
 
 import fr.tbr.geometry.datamodel.Circle;
+import fr.tbr.geometry.datamodel.Shape;
 import fr.tbr.geometry.datamodel.Square;
 import fr.tbr.geometry.datamodel.Triangle;
 
@@ -24,7 +25,13 @@ public class Application {
 		
 		Square square = new Square(5);
 		
-		double totalArea = triangle.calculateArea() + circle.calculateArea() + square.calculateArea();
+		
+		Shape[] shapes = {triangle, circle, square};
+		double totalArea = 0.0;
+		for (Shape shape : shapes){
+			totalArea += shape.calculateArea();
+		}
+		//double totalArea = triangle.calculateArea() + circle.calculateArea() + square.calculateArea();
 		System.out.println(totalArea);
 		
 	}
