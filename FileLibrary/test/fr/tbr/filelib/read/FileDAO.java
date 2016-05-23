@@ -2,8 +2,8 @@ package fr.tbr.filelib.read;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -24,7 +24,8 @@ public class FileDAO {
 		File file = new File(filePath);
 		FileReader fileReader = new FileReader(file);
 		this.scanner = new Scanner(fileReader);
-		this.writer = new PrintWriter(file);
+		FileOutputStream fos = new FileOutputStream(file, true);
+		this.writer = new PrintWriter(fos);
 	
 	}
 
