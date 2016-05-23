@@ -10,6 +10,11 @@ public class FileDAO {
 	private String filePath;
 	private Scanner scanner;
 	
+	/**
+	 * 
+	 * @param filePath
+	 * @throws FileNotFoundException
+	 */
 	public FileDAO(String filePath) throws FileNotFoundException {
 		this.filePath = filePath;
 		File file = new File(filePath);
@@ -28,6 +33,7 @@ public class FileDAO {
 		String content = "";
 		while (this.scanner.hasNext()){
 			content += this.scanner.nextLine();
+			content += System.getProperty("line.separator");
 		}
 		return content;
 	}
