@@ -12,7 +12,7 @@ import fr.tbr.filelib.read.FileDAO;
  * @author tbrou
  *
  */
-public class ReadTest {
+public class WriteTest {
 
 	/**
 	 * @param args
@@ -23,9 +23,9 @@ public class ReadTest {
 		
 		FileDAO fileDAO = new FileDAO(filePath);
 		
-		String content = fileDAO.readContent();
-		
-		System.out.println(content);
+		fileDAO.writeContent("this is a write test");
+		fileDAO.writeContent("this is another test");
+	
 		
 		fileDAO.close();
 
