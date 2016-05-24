@@ -22,7 +22,6 @@ public class ReadTest {
 		String filePath = "/tests/file.txt";
 		
 		FileDAO fileDAO = new FileDAO(filePath);
-		
 		String content = fileDAO.readContent();
 		
 		System.out.println(content);
