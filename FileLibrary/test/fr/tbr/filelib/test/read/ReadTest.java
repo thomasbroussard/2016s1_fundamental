@@ -3,12 +3,12 @@
  */
 package fr.tbr.filelib.test.read;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import fr.tbr.filelib.read.FileDAO;
 
 /**
+ * A class to achieve tests operations for the FileDAO
  * @author tbrou
  *
  */
