@@ -1,3 +1,9 @@
+# TODO (24/05/2016)
+- Test the IdentityFileDAO initialization (create a test class in the test source folder)
+- Complete the save(Identity identity) method implementation from the IdentityFileDAO 
+
+
+
 # TODO (23/05/2016)
 - Draw the class diagram of the Identity Software
 - Represent an Identity class in Java
