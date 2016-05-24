@@ -32,6 +32,39 @@ public class Application {
 			scanner.close();
 			return;
 		}
+		
+		System.out.println("Menu for the IAM application :");
+		System.out.println("1 - Create an Identity");
+		System.out.println("2 - Update an Identity");
+		System.out.println("3 - Delete an Identity");
+		System.out.println("4 - Exit");
+		System.out.print("your choice (1|2|3|4) : ");
+		String menuAnswer = scanner.nextLine();
+		switch (menuAnswer) {
+		case "1":
+			System.out.println("Creation Activity");
+			
+			
+			
+			
+			
+			break;
+		case "2":
+			System.out.println("Modification Activity");
+			break;
+			
+		case "3":
+			System.out.println("Deletion Activity");
+			break;
+		case "4":
+			System.out.println("The program will now exit");
+			scanner.close();
+			return;
+			
+		default:
+			break;
+		}
+		
 	
 		
 		
