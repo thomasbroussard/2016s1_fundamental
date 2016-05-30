@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import fr.tbr.iamcore.datamodel.Identity;
+import fr.tbr.iamcore.exception.DAOInitializationException;
 import fr.tbr.iamcore.service.authentication.AuthenticationService;
 import fr.tbr.iamcore.service.dao.IdentityFileDAO;
 
@@ -36,7 +37,15 @@ public class Application {
 			scanner.close();
 			return;
 		}
-		IdentityFileDAO dao = new IdentityFileDAO("/tests/identities.txt");
+		IdentityFileDAO dao;
+		try {
+			dao = new IdentityFileDAO("/tests/identities.txt");
+		} catch (DAOInitializationException e) {
+			System.out.println(e.getInitializationFault());
+			System.out.println("unable to initialize, exiting");
+			scanner.close();
+			return;
+		}
 		System.out.println("Menu for the IAM application :");
 		System.out.println("1 - Create an Identity");
 		System.out.println("2 - Update an Identity");
