@@ -1,3 +1,6 @@
+# TODO (30/05/2016
+implement the criteria checks in the IdentityFileDAO.search() method
+
 # Remark
 The project due date is set to the 4th of July 2016
 
