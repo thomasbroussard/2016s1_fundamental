@@ -1,3 +1,7 @@
+# Remark
+The project due date is set to the 4th of July 2016
+
+
 # TODO (24/05/2016)
 - Test the IdentityFileDAO initialization (create a test class in the test source folder)
 - Complete the save(Identity identity) method implementation from the IdentityFileDAO 
