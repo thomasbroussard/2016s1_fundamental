@@ -4,15 +4,17 @@
 package fr.tbr.iamcore.service.dao;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOInitializationException;
+import fr.tbr.iamcore.exception.DAOSaveException;
 
 /**
  * A DAO is a class that is able to manage data for instances of an other class
@@ -62,8 +64,15 @@ public class IdentityFileDAO {
 	 * This method is able to save an identity into a file
 	 * 
 	 * @param identity
+	 * @throws DAOSaveException 
 	 */
-	public void save(Identity identity) {
+	public void save(Identity identity) throws DAOSaveException {
+		if (identity == null){
+			throw new DAOSaveException("error while trying to save an identity, argument was null");
+		}
+		if (this.writer == null){
+			throw new DAOSaveException("error, not able to write in the file");
+		}
 		this.writer.println("-----Identity-----");
 		this.writer.println(identity.getDisplayName());
 		this.writer.println(identity.getEmail());
@@ -73,7 +82,26 @@ public class IdentityFileDAO {
 	}
 
 	public Collection<Identity> search(Identity criteria) {
-		return null;
+		List<Identity> identities = new ArrayList<Identity>();
+		
+		while(scanner.hasNext()){
+			scanner.nextLine();
+			String displayName = scanner.nextLine();
+			String email = scanner.nextLine();
+			String uid = scanner.nextLine();
+			if (displayName.equals(criteria.getDisplayName())){
+				//criteria check
+			}
+			scanner.nextLine();
+			
+			Identity identity = new Identity(displayName, email, uid);
+			identities.add(identity);
+		}
+		
+		
+		
+		return identities;
+	
 	}
 
 	public void update(Identity identityToUpdate) {

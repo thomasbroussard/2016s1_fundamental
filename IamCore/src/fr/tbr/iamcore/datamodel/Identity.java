@@ -64,6 +64,17 @@ public class Identity {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Identity [displayName=" + displayName + ", email=" + email
+				+ ", uid=" + uid + "]";
+	}
+	
 	
 	
 

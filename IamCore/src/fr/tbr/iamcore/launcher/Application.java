@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOInitializationException;
+import fr.tbr.iamcore.exception.DAOSaveException;
 import fr.tbr.iamcore.service.authentication.AuthenticationService;
 import fr.tbr.iamcore.service.dao.IdentityFileDAO;
 
@@ -65,7 +66,11 @@ public class Application {
 			String uid = scanner.nextLine();
 			Identity identity = new Identity(displayName, email, uid);
 
-			dao.save(identity);
+			try {
+				dao.save(identity);
+			} catch (DAOSaveException e) {
+				System.out.println(e.getSaveFault());
+			}
 
 			break;
 		case "2":
