@@ -15,6 +15,9 @@ import java.util.Scanner;
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOInitializationException;
 import fr.tbr.iamcore.exception.DAOSaveException;
+import fr.tbr.iamcore.service.matching.Match;
+import fr.tbr.iamcore.service.matching.impl.ContainsMatch;
+import fr.tbr.iamcore.service.matching.impl.EqualsMatch;
 
 /**
  * A DAO is a class that is able to manage data for instances of an other class
@@ -34,6 +37,8 @@ public class IdentityFileDAO {
 	private String filePath;
 	private PrintWriter writer;
 	private Scanner scanner;
+	
+	private Match matchingStrategy = new ContainsMatch();
 
 	public IdentityFileDAO(String filePath) throws DAOInitializationException {
 		if (filePath == null){
@@ -89,13 +94,14 @@ public class IdentityFileDAO {
 			String displayName = scanner.nextLine();
 			String email = scanner.nextLine();
 			String uid = scanner.nextLine();
-			if (displayName.equals(criteria.getDisplayName())){
-				//criteria check
-			}
+			
 			scanner.nextLine();
 			
 			Identity identity = new Identity(displayName, email, uid);
-			identities.add(identity);
+			if (this.matchingStrategy.match(criteria, identity)){
+				identities.add(identity);
+			}
+	
 		}
 		
 		
@@ -103,6 +109,7 @@ public class IdentityFileDAO {
 		return identities;
 	
 	}
+
 
 	public void update(Identity identityToUpdate) {
 
