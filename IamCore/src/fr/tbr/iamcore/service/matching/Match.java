@@ -1,10 +1,9 @@
 package fr.tbr.iamcore.service.matching;
 
-import fr.tbr.iamcore.datamodel.Identity;
 
-public interface Match {
+public interface Match<T> {
 	
 	
-	public boolean match(Identity firstIdentity, Identity secondIdentity);
+	public boolean match(T firstIdentity, T secondIdentity);
 
 }

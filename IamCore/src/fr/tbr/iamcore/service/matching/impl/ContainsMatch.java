@@ -3,7 +3,7 @@ package fr.tbr.iamcore.service.matching.impl;
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.service.matching.Match;
 
-public class ContainsMatch implements Match {
+public class ContainsMatch implements Match<Identity> {
 	
 	
 	@Override
