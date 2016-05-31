@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<service>
+	<header>
+		<clientLicense></clientLicense>
+		<environnement>STRABGE</environnement>
+		<groupDroit>SABTELE</groupDroit>
+		<groupMenu>SABTELE</groupMenu>
+		<language>1</language>
+		<sab_agence>0001</sab_agence>
+		<sab_agence_label>AGENCE 1</sab_agence_label>
+		<sab_etablissement>0001</sab_etablissement>
+		<sab_etablissement_label>S.A.B</sab_etablissement_label>
+		<sab_interAgence></sab_interAgence>
+		<sab_service>AA</sab_service>
+		<sab_sousService>AA</sab_sousService>
+		<sab_service_label>S.A.B S/S </sab_service_label>
+		<userId>BASSILAC</userId>
+		<sessionId>BASSILAC_0_2</sessionId>
+		<serviceName>AgeDEditionAvis</serviceName>
+		<functionName>AgeDEditionAvis</functionName>
+		<stepName>STEP1</stepName>
+		<report>RetraitRPT</report>
+	</header>
+	<body>
+		<reedit>1</reedit>
+		<langue>1</langue>
+		<codRef></codRef>
+		<refExt></refExt>
+		<libelle>RET SANS CHG</libelle>
+		<libLon>RETRAIT ESPECE SANS CHANGE</libLon>
+		<staId>7</staId>
+		<staLib>Comptabilisé</staLib>
+		<numCli>9900720</numCli>
+		<codEta>MR</codEta>
+		<nom>HAJJ</nom>
+		<prenom>CHRISTELLE</prenom>
+		<adr1>ADDD1</adr1>
+		<adr2></adr2>
+		<adr3>ADDD355555555555555555555</adr3>
+		<adr4></adr4>
+		<codPos></codPos>
+		<ville>PARIS</ville>
+		<pays></pays>
+		<libTit></libTit>
+		<nomPere></nomPere>
+		<numCpt></numCpt>
+		<devCpt></devCpt>
+		<iban></iban>
+		<agence></agence>
+		<libAge></libAge>
+		<dateOpe></dateOpe>
+		<numCodeOpe></numCodeOpe>
+		<numAgeOpe></numAgeOpe>
+		<codeOpe></codeOpe>		
+		<natOpe></natOpe>
+		<creUser></creUser>
+		<numChq>0</numChq>
+		<comme1></comme1>
+		<comme2></comme2>
+		<comme3></comme3>
+		<dateAnn></dateAnn>
+		<annUser></annUser>
+		<datVal></datVal>
+		<caiId>3</caiId>
+		<codeCai>C01</codeCai>
+		<libCai>C01</libCai>
+		<caiAge>1</caiAge>
+		<cptCai>AAAAAAAA888</cptCai>
+		<cptCaiDev>EUR</cptCaiDev>
+		<cptCaiAge>1</cptCaiAge>
+		<cptCai2></cptCai2>
+		<cptCaiDev2></cptCaiDev2>
+		<cptCaiAge2></cptCaiAge2>
+		<caiId2></caiId2>
+		<codCai2></codCai2>
+		<cai2></cai2>
+		<devOpe>EUR</devOpe>
+		<mntDevOpe>121.23</mntDevOpe>
+		<devChg></devChg>
+		<mntBrutOpe>121.23</mntBrutOpe>
+		<mntFraOpe>0.38</mntFraOpe>
+		<mntNetOpe>121.61</mntNetOpe>
+		<mntArrOpe>0.00</mntArrOpe>
+		<taux>0E-9</taux>
+		<mntLet>CENT VINGT ET UN EUROS ET SOIXANTE ET UN CTS</mntLet>
+		<lstCom occsize="5" size="1">
+			<com>
+				<codCom>GUI001</codCom>
+				<libCom>commission guichet</libCom>
+				<devCom>EUR</devCom>
+				<mntCom>0.38</mntCom>
+				<mntComLet></mntComLet>
+			</com>
+		</lstCom>
+		<szLstCom>1</szLstCom>
+		
+		
+	</body>
+	<fault></fault>
+</service>
