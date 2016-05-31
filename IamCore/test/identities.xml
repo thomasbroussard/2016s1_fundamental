@@ -1,0 +1,7 @@
+<identities> <!-- Root element -->
+	<identity displayName="thomas" email="tbr@tbr.com" uid="123" /> <!-- element -->
+	<!--displayName is an attribute with the value "thomas" -->
+	
+	<listName>my first xml file</listName>
+	<!-- my first xml file is the text content of the listName element -->
+</identities>
