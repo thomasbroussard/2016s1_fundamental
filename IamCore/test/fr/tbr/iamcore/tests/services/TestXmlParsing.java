@@ -12,6 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOInitializationException;
 import fr.tbr.iamcore.service.dao.IdentityXmlDAO;
 
@@ -22,9 +23,14 @@ public class TestXmlParsing {
 		
 		//firstXmlParsing();
 		
-		firstXmlParsingThenAppend();
+		//firstXmlParsingThenAppend();
 		
-		
+		IdentityXmlDAO dao = new IdentityXmlDAO();
+		System.out.println(dao.search(null));
+		System.out.println("before insert");
+		dao.save(new Identity("quentin","quentin@quentin.com", "789"));
+		System.out.println("after insert:");
+		System.out.println(dao.search(null));
 
 		
 	}
