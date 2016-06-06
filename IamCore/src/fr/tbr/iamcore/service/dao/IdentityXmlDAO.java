@@ -25,6 +25,9 @@ import org.xml.sax.SAXException;
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOExceptionsMessages;
 import fr.tbr.iamcore.exception.DAOInitializationException;
+import fr.tbr.iamcore.service.matching.Match;
+import fr.tbr.iamcore.service.matching.impl.ContainsMatch;
+import fr.tbr.iamcore.service.matching.impl.EqualsMatch;
 
 
 /**
@@ -41,6 +44,10 @@ public class IdentityXmlDAO {
 	private static final String EMAIL_ATTRIBUTE = "email";
 	private static final String DISPLAY_NAME_ATTRIBUTE = "displayName";
 	private static final String IDENTITY_TAG_NAME = "identity";
+	
+	//Indicate how a criteria should match an Identity
+	private Match<Identity> matchingStrategy = new EqualsMatch();
+	
 	private Document doc;
 	
 	
@@ -69,11 +76,15 @@ public class IdentityXmlDAO {
 		List<Identity> identities = new ArrayList<Identity>();
 		NodeList list = this.doc.getElementsByTagName(IDENTITY_TAG_NAME);
 		for (int i = 0; i < list.getLength(); i++) {
+			
 			Element identityTag = (Element) list.item(i);
 			Identity identity = new Identity(identityTag.getAttribute(DISPLAY_NAME_ATTRIBUTE),
 					identityTag.getAttribute(EMAIL_ATTRIBUTE),
 					identityTag.getAttribute(UID));
-			identities.add(identity);
+			if (matchingStrategy.match(identity, criteria)){
+				identities.add(identity);
+			}
+	
 		}
 		return identities;
 	}
