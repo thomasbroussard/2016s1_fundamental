@@ -8,10 +8,19 @@ package fr.tbr.iamcore.exception;
  *
  */
 public class DAOInitializationException extends Exception {
+	
+
+	
 	private String initializationFault;
+	
+	private DAOExceptionsMessages message;
 	
 	public DAOInitializationException(String message) {
 		this.initializationFault =  message;
+	}
+	
+	public DAOInitializationException(DAOExceptionsMessages message) {
+		this.message =  message;
 	}
 
 	public String getInitializationFault() {

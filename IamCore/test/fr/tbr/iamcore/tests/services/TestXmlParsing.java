@@ -22,8 +22,9 @@ public class TestXmlParsing {
 		
 		//firstXmlParsing();
 		
-		IdentityXmlDAO dao = new IdentityXmlDAO();
-		System.out.println(dao.search(null));
+		firstXmlParsingThenAppend();
+		
+		
 
 		
 	}
@@ -44,4 +45,35 @@ public class TestXmlParsing {
 		System.out.println(identityTag.getAttribute("uid"));
 	}
 
+	
+	private static void firstXmlParsingThenAppend() throws SAXException, IOException, ParserConfigurationException{
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document document = db.newDocument(); //create a document - an xml file in memory - from scratch
+		
+		Document parsedDocument = db.parse(new File("identities.xml"));
+		
+
+		Element newIdentity = parsedDocument.createElement("identity");
+		newIdentity.setAttribute("displayName", "clement");
+		newIdentity.setAttribute("email", "clement@clement.com");
+		newIdentity.setAttribute("uid", "4567");
+		parsedDocument.getDocumentElement().appendChild(newIdentity);
+		
+		NodeList list = parsedDocument.getElementsByTagName("identity");
+		
+		for (int i = 0; i < list.getLength(); i++) {
+			Element identityTag = (Element) list.item(i);
+			
+			System.out.println(identityTag.getAttribute("displayName"));
+			System.out.println(identityTag.getAttribute("email"));
+			System.out.println(identityTag.getAttribute("uid"));
+		}
+		
+
+
+		
+		
+	}
+	
 }
