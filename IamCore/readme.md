@@ -1,4 +1,9 @@
-# TODO (30/05/2016
+#TODO (not optional!)
+implement the IdentityJDBCDAO with its search() method according to the TestJDBC class
+
+
+
+# TODO (30/05/2016)
 implement the criteria checks in the IdentityFileDAO.search() method
 
 # Remark
