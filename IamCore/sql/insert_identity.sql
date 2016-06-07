@@ -1,0 +1,1 @@
+insert into IDENTITIES ("IDENTITY_DISPLAYNAME", "IDENTITY_EMAIL") values('Clément Serrano', 'cserr@natsystem.fr')
