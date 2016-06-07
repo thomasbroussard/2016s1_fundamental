@@ -75,6 +75,7 @@ public class IdentityXmlDAO {
 	public Collection<Identity> search(Identity criteria) {
 		List<Identity> identities = new ArrayList<Identity>();
 		NodeList list = this.doc.getElementsByTagName(IDENTITY_TAG_NAME);
+	
 		for (int i = 0; i < list.getLength(); i++) {
 			
 			Element identityTag = (Element) list.item(i);
