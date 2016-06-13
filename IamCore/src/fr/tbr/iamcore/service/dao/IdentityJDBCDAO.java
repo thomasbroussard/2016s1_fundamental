@@ -91,7 +91,7 @@ public class IdentityJDBCDAO {
 	}
 
 	private Connection getConnection() throws SQLException {
-		if (this.connection.isClosed()){
+		if (this.connection == null || this.connection.isClosed()){
 			this.connection = DriverManager.getConnection(CONF_CONNECTION_STRING,
 					CONF_USERNAME, CONF_PASSWORD);
 		}
