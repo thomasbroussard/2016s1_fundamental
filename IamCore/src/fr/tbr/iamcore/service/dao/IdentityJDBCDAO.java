@@ -14,6 +14,7 @@ import java.util.List;
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOExceptionsMessages;
 import fr.tbr.iamcore.exception.DAOInitializationException;
+import fr.tbr.iamcore.exception.DAOSaveException;
 import fr.tbr.iamcore.exception.DAOSearchException;
 
 /**
@@ -24,6 +25,7 @@ import fr.tbr.iamcore.exception.DAOSearchException;
  */
 public class IdentityJDBCDAO {
 
+	private static final String IDENTITY_UID = "IDENTITY_UID";
 	private static final String QUERY_ALL_IDENTITIES = "select * from IDENTITIES";
 	private static final String COLUMN_IDENTITY_DISPLAYNAME = "IDENTITY_DISPLAYNAME";
 	private static final String CONF_USERNAME = "tom";
@@ -47,16 +49,17 @@ public class IdentityJDBCDAO {
 		List<Identity> identities = new ArrayList<>();
 		try {
 
-			if (connection.isClosed()) {
-				this.connection = getConnection();
-			}
+			Connection connection = getConnection();
 			// prepare the query
 			PreparedStatement prepareStatement = connection
 					.prepareStatement(QUERY_ALL_IDENTITIES);
 			ResultSet rs = prepareStatement.executeQuery();
 			while (rs.next()) {
 				String displayName = rs.getString(COLUMN_IDENTITY_DISPLAYNAME);
-				System.out.println(displayName);
+				String uid = rs.getString(IDENTITY_UID);
+				String email = rs.getString("IDENTITY_EMAIL");
+				Identity identity = new Identity(displayName, email, uid);
+				identities.add(identity);
 			}
 
 		} catch (SQLException e) {
@@ -68,10 +71,34 @@ public class IdentityJDBCDAO {
 
 	}
 
-	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(
-				CONF_CONNECTION_STRING,
-				CONF_USERNAME, CONF_PASSWORD);
+	public void save(Identity identity) throws DAOSaveException {
+		try {
+			Connection connection = getConnection();
+			PreparedStatement pstmt = connection.prepareStatement("insert into IDENTITIES (IDENTITY_DISPLAYNAME, IDENTITY_EMAIL) "
+					+ "values( ?, ?)");
+			
+			pstmt.setString(1, identity.getDisplayName());
+			pstmt.setString(2, identity.getEmail());
+			pstmt.execute();
+			
+			
+		} catch (SQLException sqle) {
+			DAOSaveException dse = new DAOSaveException("problem...");
+			dse.initCause(sqle);
+			throw dse;
+		}
+
 	}
 
+	private Connection getConnection() throws SQLException {
+		if (this.connection.isClosed()){
+			this.connection = DriverManager.getConnection(CONF_CONNECTION_STRING,
+					CONF_USERNAME, CONF_PASSWORD);
+		}
+		return this.connection;
+		
+	}
+
+	// insert into "TOM"."IDENTITIES" ("IDENTITY_DISPLAYNAME", "IDENTITY_EMAIL")
+	// values('Quentin Decayeux', 'qdeca@natsystem.fr')
 }
