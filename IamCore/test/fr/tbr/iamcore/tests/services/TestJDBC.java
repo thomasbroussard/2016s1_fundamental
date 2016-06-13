@@ -5,6 +5,7 @@ package fr.tbr.iamcore.tests.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,7 +24,8 @@ public class TestJDBC {
 				, "tom", "tom");
 
 		//prepare the query
-		ResultSet rs = connection.prepareStatement("select * from IDENTITIES").executeQuery();
+		PreparedStatement prepareStatement = connection.prepareStatement("select * from IDENTITIES");
+		ResultSet rs = prepareStatement.executeQuery();
 		while(rs.next()){
 			String displayName = rs.getString("IDENTITY_DISPLAYNAME");
 			System.out.println(displayName);
