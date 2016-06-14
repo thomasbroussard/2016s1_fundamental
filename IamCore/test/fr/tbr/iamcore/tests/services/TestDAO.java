@@ -3,11 +3,6 @@
  */
 package fr.tbr.iamcore.tests.services;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import fr.tbr.iamcore.datamodel.Identity;
@@ -17,13 +12,14 @@ import fr.tbr.iamcore.exception.DAOSearchException;
 import fr.tbr.iamcore.exception.DAOUpdateException;
 import fr.tbr.iamcore.service.dao.DAODeleteException;
 import fr.tbr.iamcore.service.dao.DAOResourceException;
+import fr.tbr.iamcore.service.dao.IdentityDAOInterface;
 import fr.tbr.iamcore.service.dao.IdentityJDBCDAO;
 
 /**
  * @author tbrou
  *
  */
-public class TestJDBC {
+public class TestDAO {
 
 	/**
 	 * @param args
@@ -35,8 +31,8 @@ public class TestJDBC {
 	 * @throws DAODeleteException 
 	 * @throws DAOResourceException 
 	 */
-	public static void main(String[] args) throws SQLException, DAOSaveException, DAOInitializationException, DAOSearchException, DAOUpdateException, DAODeleteException, DAOResourceException {
-		IdentityJDBCDAO dao = IdentityJDBCDAO.getInstance();
+	public static void main(String[] args) throws DAOSaveException, DAOInitializationException, DAOSearchException, DAOUpdateException, DAODeleteException, DAOResourceException {
+		IdentityDAOInterface dao = getDAO();
 		System.out.println(dao.search(null));
 		Identity identity = new Identity("Marie", "Bluntzer", null);
 		System.out.println("before save");
@@ -66,20 +62,10 @@ public class TestJDBC {
 
 		
 	}
+	
 
-	private static void testJDBCConnection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/Identities;create=true"
-				, "tom", "tom");
-
-		//prepare the query
-		PreparedStatement prepareStatement = connection.prepareStatement("select * from IDENTITIES");
-		ResultSet rs = prepareStatement.executeQuery();
-		while(rs.next()){
-			String displayName = rs.getString("IDENTITY_DISPLAYNAME");
-			System.out.println(displayName);
-		}
-		
-		connection.close();
+	
+	private static IdentityDAOInterface getDAO() throws DAOInitializationException{
+		return IdentityJDBCDAO.getInstance();
 	}
-
 }
