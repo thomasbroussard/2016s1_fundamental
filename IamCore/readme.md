@@ -1,3 +1,7 @@
+#TODO (13/06/2016)
+implement the search restrictions using the WHERE clause.
+
+
 #TODO (not optional!)
 implement the IdentityJDBCDAO with its search() method according to the TestJDBC class
 

@@ -31,8 +31,9 @@ public class TestJDBC {
 	public static void main(String[] args) throws SQLException, DAOSaveException, DAOInitializationException, DAOSearchException {
 		IdentityJDBCDAO dao = new IdentityJDBCDAO();
 		System.out.println(dao.search(null));
-		dao.save(new Identity("Marie", "Bluntzer", null));
-		System.out.println(dao.search(null));
+		Identity identity = new Identity("Marie", "Bluntzer", null);
+		dao.save(identity);
+		System.out.println(dao.search(identity));
 	}
 
 	private static void testJDBCConnection() throws SQLException {

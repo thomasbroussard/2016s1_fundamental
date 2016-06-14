@@ -26,7 +26,7 @@ import fr.tbr.iamcore.exception.DAOSearchException;
 public class IdentityJDBCDAO {
 
 	private static final String IDENTITY_UID = "IDENTITY_UID";
-	private static final String QUERY_ALL_IDENTITIES = "select * from IDENTITIES";
+	private static final String QUERY_ALL_IDENTITIES = "select * from IDENTITIES where IDENTITY_DISPLAYNAME = ? and IDENTITY_EMAIL = ?";
 	private static final String COLUMN_IDENTITY_DISPLAYNAME = "IDENTITY_DISPLAYNAME";
 	private static final String CONF_USERNAME = "tom";
 	private static final String CONF_PASSWORD = "tom";
@@ -48,11 +48,16 @@ public class IdentityJDBCDAO {
 	public List<Identity> search(Identity criteria) throws DAOSearchException {
 		List<Identity> identities = new ArrayList<>();
 		try {
-
+			if(criteria == null){
+				criteria = new Identity("","","");
+			}
 			Connection connection = getConnection();
 			// prepare the query
 			PreparedStatement prepareStatement = connection
 					.prepareStatement(QUERY_ALL_IDENTITIES);
+			prepareStatement.setString(1, criteria.getDisplayName());
+			prepareStatement.setString(2, criteria.getEmail());
+			
 			ResultSet rs = prepareStatement.executeQuery();
 			while (rs.next()) {
 				String displayName = rs.getString(COLUMN_IDENTITY_DISPLAYNAME);
