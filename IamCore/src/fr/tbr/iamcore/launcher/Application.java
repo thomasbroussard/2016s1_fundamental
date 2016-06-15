@@ -5,6 +5,10 @@ package fr.tbr.iamcore.launcher;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,17 +24,21 @@ import fr.tbr.iamcore.service.dao.IdentityFileDAO;
  *
  */
 public class Application {
-	
-	private static final Log logger = LogFactory.getLog(Application.class);
 
 	/**
 	 * @param args
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		
+		//This should be configured from a configuration file
+		FileHandler handler = new FileHandler("myFile.log");
+		SimpleFormatter newFormatter = new SimpleFormatter();
+		handler.setFormatter(newFormatter);
+		Logger.getGlobal().addHandler(handler);
+		handler.setLevel(Level.FINEST);
+		Log logger = LogFactory.getLog(Application.class);		
 		logger.info("program started");
-	
+		
 		
 		
 		Scanner scanner = new Scanner(System.in);
