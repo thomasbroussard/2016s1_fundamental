@@ -3,6 +3,7 @@
  */
 package fr.tbr.iamcore.tests.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.tbr.iamcore.datamodel.Identity;
@@ -12,8 +13,8 @@ import fr.tbr.iamcore.exception.DAOSearchException;
 import fr.tbr.iamcore.exception.DAOUpdateException;
 import fr.tbr.iamcore.service.dao.DAODeleteException;
 import fr.tbr.iamcore.service.dao.DAOResourceException;
+import fr.tbr.iamcore.service.dao.IdentityDAOFactory;
 import fr.tbr.iamcore.service.dao.IdentityDAOInterface;
-import fr.tbr.iamcore.service.dao.IdentityJDBCDAO;
 
 /**
  * @author tbrou
@@ -32,7 +33,7 @@ public class TestDAO {
 	 * @throws DAOResourceException 
 	 */
 	public static void main(String[] args) throws DAOSaveException, DAOInitializationException, DAOSearchException, DAOUpdateException, DAODeleteException, DAOResourceException {
-		IdentityDAOInterface dao = getDAO();
+		IdentityDAOInterface dao = IdentityDAOFactory.getIdentityDAO();
 		System.out.println(dao.search(null));
 		Identity identity = new Identity("Marie", "Bluntzer", null);
 		System.out.println("before save");
@@ -63,9 +64,6 @@ public class TestDAO {
 		
 	}
 	
-
-	
-	private static IdentityDAOInterface getDAO() throws DAOInitializationException{
-		return IdentityJDBCDAO.getInstance();
-	}
 }
+	
+

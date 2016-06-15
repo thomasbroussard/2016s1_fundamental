@@ -6,6 +6,9 @@ package fr.tbr.iamcore.launcher;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.exception.DAOInitializationException;
 import fr.tbr.iamcore.exception.DAOSaveException;
@@ -17,13 +20,19 @@ import fr.tbr.iamcore.service.dao.IdentityFileDAO;
  *
  */
 public class Application {
+	
+	private static final Log logger = LogFactory.getLog(Application.class);
 
 	/**
 	 * @param args
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-
+		
+		logger.info("program started");
+	
+		
+		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Welcome to the IAM System");
 
@@ -74,10 +83,12 @@ public class Application {
 
 			break;
 		case "2":
+			//Propose a search activity in order to select the identity to modify
 			System.out.println("Modification Activity");
 			break;
 
 		case "3":
+			//Propose a search activity in order to select the identity to delete
 			System.out.println("Deletion Activity");
 			break;
 		case "4":
