@@ -1,0 +1,3 @@
+22 juin 2016 17:59:09,459 fr.tbr.....TestLog [main] INFO  --- essai
+22 juin 2016 18:54:42,390 fr.tbr...Application [main] INFO  --- program started
+22 juin 2016 18:55:03,896 fr.tbr...Application [main] INFO  --- program received this input : user = thomas, password =**** 
