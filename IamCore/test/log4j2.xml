@@ -19,7 +19,7 @@
     
     <!-- Define outputs for logging -->
     <Appenders>
-        <RollingRandomAccessFile name="logFile" fileName="logs/application.log" filePattern="logs/app-%d{MM-dd-yyyy}.log.gz"  append="true">
+        <RollingRandomAccessFile name="logFile" fileName="C:/logs/application.log" filePattern="logs/app-%d{MM-dd-yyyy}.log.gz"  append="true">
             <PatternLayout>
                 <Pattern>${patternLayout}</Pattern>
             </PatternLayout>

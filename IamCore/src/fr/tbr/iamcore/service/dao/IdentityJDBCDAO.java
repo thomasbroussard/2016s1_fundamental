@@ -117,6 +117,12 @@ public class IdentityJDBCDAO implements IdentityDAOInterface{
 
 	private Connection getConnection() throws SQLException {
 		if (this.connection == null || this.connection.isClosed()){
+			try {
+				Class.forName("org.apache.derby.jdbc.ClientDriver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.connection = DriverManager.getConnection(CONF_CONNECTION_STRING,
 					CONF_USERNAME, CONF_PASSWORD);
 		}
