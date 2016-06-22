@@ -49,7 +49,6 @@
         <!-- General loggers -->
         <Root level="INFO" includeLocation="true">
             <AppenderRef ref="logFile"/>
-
         </Root>
         
     </Loggers>
