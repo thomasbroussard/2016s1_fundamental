@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Logging configuration -->
+<Configuration name="mainConfig">
+
+    <!-- Define global properties -->
+    <Properties>
+        <!-- Logging Patterns -->
+        <!-- fullPatternLayout will produce:  -->
+        <!-- 2014-11-24 10:45:52,082 - [thread_id][ip_address:session_id] DEBUG: MyClass: MyMessage  -->
+        <Property name="fullpatternLayout">%d{DATE} %logger{9.9..} [%-X{tid}][%-X{gid}:%-X{uid}] %-5p - %m%n</Property>
+        
+        <!-- patternLayout will produce -->
+         <!-- 2014-11-24 10:45:52,082 - [thread_name] DEBUG: MyClass: MyMessage -->
+        <Property name="patternLayout">%d{DATE} %logger{9.9..} [%t] %-5p --- %m%n</Property>
+        
+        <!-- More on patterns here: http://logging.apache.org/log4j/2.0/manual/layouts.html#PatternLayout -->
+    </Properties>
+    
+    <!-- Define outputs for logging -->
+    <Appenders>
+        <RollingRandomAccessFile name="logFile" fileName="logs/application.log" filePattern="logs/app-%d{MM-dd-yyyy}.log.gz"  append="true">
+            <PatternLayout>
+                <Pattern>${patternLayout}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+        
+        <!-- Appenders can be asynchronous, meaning the access to this appender is asynchronous -->
+        <!--  <Async name="asyncLogFile" includeLocation="true">
+            <AppenderRef ref="logFile"/>
+        </Async>
+        -->
+        
+        
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>${patternLayout}</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+     
+        
+        <!-- General loggers -->
+        <Root level="INFO" includeLocation="true">
+            <AppenderRef ref="logFile"/>
+
+        </Root>
+        
+    </Loggers>
+</Configuration>
